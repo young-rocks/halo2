@@ -1511,6 +1511,21 @@
 <span id="1489">1489</span>
 <span id="1490">1490</span>
 <span id="1491">1491</span>
+<span id="1492">1492</span>
+<span id="1493">1493</span>
+<span id="1494">1494</span>
+<span id="1495">1495</span>
+<span id="1496">1496</span>
+<span id="1497">1497</span>
+<span id="1498">1498</span>
+<span id="1499">1499</span>
+<span id="1500">1500</span>
+<span id="1501">1501</span>
+<span id="1502">1502</span>
+<span id="1503">1503</span>
+<span id="1504">1504</span>
+<span id="1505">1505</span>
+<span id="1506">1506</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">core::cmp::max</span>;
 <span class="kw">use</span> <span class="ident">core::ops</span>::{<span class="ident">Add</span>, <span class="ident">Mul</span>};
 <span class="kw">use</span> <span class="ident">ff::Field</span>;
@@ -2538,6 +2553,21 @@
         <span class="ident">index</span>
     }
 
+    <span class="doccomment">/// with the work around, the table column can be any type.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">lookup_any</span>(
+        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
+        <span class="ident">table_map</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">VirtualCells</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">F</span><span class="op">&gt;</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Expression</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>, <span class="ident">Expression</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>)<span class="op">&gt;</span>,
+    ) -&gt; <span class="ident">usize</span> {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cells</span> <span class="op">=</span> <span class="ident">VirtualCells::new</span>(<span class="self">self</span>);
+        <span class="kw">let</span> <span class="ident">table_map</span> <span class="op">=</span> <span class="ident">table_map</span>(<span class="kw-2">&amp;mut</span> <span class="ident">cells</span>);
+
+        <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">lookups</span>.<span class="ident">len</span>();
+
+        <span class="self">self</span>.<span class="ident">lookups</span>.<span class="ident">push</span>(<span class="ident">lookup::Argument::new</span>(<span class="ident">table_map</span>));
+
+        <span class="ident">index</span>
+    }
+
     <span class="kw">fn</span> <span class="ident">query_fixed_index</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">column</span>: <span class="ident">Column</span><span class="op">&lt;</span><span class="ident">Fixed</span><span class="op">&gt;</span>, <span class="ident">at</span>: <span class="ident">Rotation</span>) -&gt; <span class="ident">usize</span> {
         <span class="comment">// Return existing query, if it exists</span>
         <span class="kw">for</span> (<span class="ident">index</span>, <span class="ident">fixed_query</span>) <span class="kw">in</span> <span class="self">self</span>.<span class="ident">fixed_queries</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
@@ -3003,5 +3033,5 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="halo2_proofs" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (42e1761c7 2022-05-15)" ></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="halo2_proofs" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (cd282d7f7 2022-05-18)" ></div>
 </body></html>
