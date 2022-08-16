@@ -1002,6 +1002,7 @@ impl<F: Field> ConstraintSystem<F> {
     /// they need to match.
     pub fn lookup(
         &mut self,
+        _name: &'static str,
         table_map: impl FnOnce(&mut VirtualCells<'_, F>) -> Vec<(Expression<F>, TableColumn)>,
     ) -> usize {
         let mut cells = VirtualCells::new(self);
@@ -1028,6 +1029,7 @@ impl<F: Field> ConstraintSystem<F> {
     /// with the work around, the table column can be any type.
     pub fn lookup_any(
         &mut self,
+        _name: &'static str,
         table_map: impl FnOnce(&mut VirtualCells<'_, F>) -> Vec<(Expression<F>, Expression<F>)>,
     ) -> usize {
         let mut cells = VirtualCells::new(self);
