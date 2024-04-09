@@ -76,7 +76,7 @@ jobs:
         with:
           command: build
       - name: Setup mdBook
-        uses: peaceiris/actions-mdbook@v1
+        uses: peaceiris/actions-mdbook@v2
         with:
           mdbook-version: '0.4.5'
       - name: Test halo2 book
